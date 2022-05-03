@@ -46,7 +46,7 @@ Let's check some code to support the previous sentence:
 
 ~~~ python
         salary_matrix = {'special': {'first_turn':30, 'second_turn':20, 'third_turn':25},
-                        'normal': {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
+                         'normal' : {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
 ~~~
 
 I think this matrix is easy to understand. It's following the 7th zen rule: Readability counts and also clean

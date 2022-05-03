@@ -62,7 +62,7 @@ class SalaryCalculator:
     first_turn_hours = {'0','1','2','3','4','5','6','7','8'}
     second_turn_hours = {'9','10','11','12','13','14','15','16','17'}
     salary_matrix = {'special': {'first_turn':30, 'second_turn':20, 'third_turn':25},
-    'normal': {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
+                     'normal' : {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
     
     def calculate_salary(self, schedule):
         salary = 0
