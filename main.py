@@ -12,15 +12,10 @@ class TimeRange:
         self.start_time = time_range[2:7]
         self.end_time = time_range[8:]
 
-        if len(time_range) > 1:
-            print('start_hour ->> ', int(self.start_time[:2]))
-            print('end_hour ->> ', int(self.end_time[:2])+1)
-            for hour in range (int(self.start_time[:2]), int(self.end_time[:2])):
-                print('Added hour --> ', hour)
+        if len(time_range) > 1:          
+            for hour in range (int(self.start_time[:2]), int(self.end_time[:2])):                
                 self.hours.append(str(hour))
-
         
-        print('<><><>')
 
 class Schedule:
     time_ranges = []
@@ -29,13 +24,9 @@ class Schedule:
         self.time_ranges = []
         time_ranges = schedule.split(',')
 
-        print ('time_ranges -->', time_ranges)
-
         for time_range in time_ranges:
             new_time_range = TimeRange(time_range)
             self.time_ranges.append(new_time_range)
-
-        print ('self.time_ranges -->', self.time_ranges)
 
 
 class Employee:
@@ -79,30 +70,22 @@ class SalaryCalculator:
     def calculate_salary(self, schedule):
         salary = 0
         turn = ''
-        
-        print('schedule.time_ranges -> ', schedule.time_ranges)
 
         for time_range in schedule.time_ranges:
-            print('time_range.start_time: ', time_range.start_time, 'time_range.end_time: ', time_range.end_time)
-            print('time_range.day: ', time_range.day)
-            print('time_range.hours: ', time_range.hours)
             if time_range.day in self.sat_sun:
                 day_type = 'special'
             else:
                 day_type = 'normal'
             for hour in time_range.hours:
-                print('hour__> ', hour)
-                print('hour in first_turn_hours __> ', hour in self.first_turn_hours)
                 if hour in self.first_turn_hours:
                     turn = 'first_turn'
                 elif hour in self.second_turn_hours:
                     turn = 'second_turn'
                 else:
                     turn = 'third_turn'
-                print ('day_type: ', day_type, 'turn: ', turn)
+                
                 if turn:                    
                     salary += self.salary_matrix[day_type][turn]
-                    print('salary_this_round: ', self.salary_matrix[day_type][turn])
             
         return salary
 
