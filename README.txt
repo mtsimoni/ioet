@@ -1,7 +1,7 @@
-# Program: ioet Programming Challenge
-### Author:  Marcelo Toledo Simoni
+Program: ioet Programming Challenge
+Author:  Marcelo Toledo Simoni
 
-## An Overview of the Solution:
+An Overview of the Solution:
 
 This program solves the ioet Programming Challenge for several employees and considering that
 one employee can work in a session that overlaps two or three diferent turns, i. e.
@@ -38,23 +38,21 @@ The directory organization is:
 
 
 
-## About the Approach and Methodology
+About the Approach and Methodology
 
 For the main.py script my approach is Pythonic, totally Object Oriented, and respecting SOLID and clean code.
 
 Let's check some code to support the previous sentence:
 
-~~~ python
+
         salary_matrix = {'special': {'first_turn':30, 'second_turn':20, 'third_turn':25},
                         'normal': {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
-~~~
 
 I think this matrix is easy to understand. It's following the 7th zen rule: Readability counts and also clean
 code recomendations.
 
 By the way:
 
-~~~ python
         def calculate_salary(self, schedule):
             salary = 0
             turn = ''
@@ -76,7 +74,6 @@ By the way:
                         salary += self.salary_matrix[day_type][turn]
                 
             return salary
-~~~
 
 When I tought this approach I was triying to reduce considerably the <If> evaluations. I tried to do it easy to read and understand even 
 without comments by following clean code recomendations, and also the Pythonic rules:
@@ -139,3 +136,6 @@ Python Version: 3.10.4
         run pytest:
 
         (venv)..$ pytest
+
+
+
