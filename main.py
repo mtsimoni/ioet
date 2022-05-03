@@ -1,6 +1,19 @@
 from config import file
 
 class TimeRange:
+    '''
+    TimeRange Class:
+        Properties:
+            day (str): A day in format "MO, TU, WE, TH, FR, SA, SU"
+            start_time (str): A string indicating the start_time of the TimeRange Object
+            end_time (str): A string indicationg the end_time of the TimeRange Object
+            hours (list): A list containing the hours between start_time and end_time
+        Methods:
+            __init__(self, time_range): When the class is instantiated this method load the 
+            TimeRange data from a string like this: "TU12:00-13:00"
+                Params:
+                    time_range (str) <required>: A string in a format like this "WE06:00-15:00"
+    '''
     day = ''
     start_time = ''
     end_time= ''
@@ -18,6 +31,19 @@ class TimeRange:
         
 
 class Schedule:
+    '''
+    Schedule Class:
+        Properties:
+            time_ranges (list): A list containing a collection of TimeRange Objects            
+        Methods:
+            __init__(self, schedule): When the class is instantiated this method load the 
+            Schedule data from a string like this: "MO10:00-12:00,TH12:00-14:00,SU20:00-21:00",
+            then, splits the string in time_ranges and instantiate as many TimeRange objects are
+            required and append this to it's collection time_ranges.
+                Params:
+                    schedule (str) <required>: A string in a format like this:
+                        "MO10:00-12:00,TH12:00-14:00,SU20:00-21:00"
+    '''
     time_ranges = []
     
     def __init__(self, schedule):
@@ -30,12 +56,30 @@ class Schedule:
 
 
 class Employee:
+    '''
+    Employee Class:
+        Properties:
+            name (str): A string containing the name of the employee
+            schedule (Schedule): A Schedule object containing the schedule of the employee
+    '''
     def __init__(self, name, schedule) -> None:
         self.name = name
         self.schedule = schedule
 
 
 class FileParser:
+    '''
+    FileParser Class:
+        Properties:
+            rows (list): A list containing a collection of records readed from the data_file
+        Methods:
+            _load_rows(self): Marked as private, this method is invoqued to fill the rows property.
+            get_employees(self): This method parse rows and instantiate on Employee object for each
+                                 row, assign it's name property. Also instantiate a Schedule object
+                                 and assign it to an Employee object.
+                returns:
+                    data (list): A list of Employee objects           
+    '''
     rows = []
             
     def __init__(self, file) -> None:
@@ -58,14 +102,25 @@ class FileParser:
 
 
 class SalaryCalculator:
-    # mon_fri = {'MO', 'TU', 'WE', 'TH', 'FR'}
+    '''
+    SalaryCalculator Class:
+        Properties:
+            There are not useful properties on this class. All are only for internal purposes.
+            There are not marked as private because check this properties by code has no secondary effects,
+            and in order to preserve readability.
+        Methods:
+            calculate_salary(self, schedule): This method is used to calculate the salary.
+                params:
+                    schedule (Schedule): An object of type Schedule containing the schedule to be
+                                         analyzed.
+                returns:
+                    Salary (number): An int or float that represents the salary.
+    '''
     sat_sun = {'SA', 'SU'}
     first_turn_hours = {'0','1','2','3','4','5','6','7','8'}
     second_turn_hours = {'9','10','11','12','13','14','15','16','17'}
-    third_turn_hours = {'18','19','20','21','22','23'}
     salary_matrix = {'special': {'first_turn':30, 'second_turn':20, 'third_turn':25},
-                    'normal': {'first_turn':25, 'second_turn':15, 'third_turn':20}}
-    
+    'normal': {'first_turn':25, 'second_turn':15, 'third_turn':20}}    
     
     def calculate_salary(self, schedule):
         salary = 0
